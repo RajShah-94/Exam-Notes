@@ -1,15 +1,15 @@
 #include <iostream> //Always include this, instruction to the preprocessor
 #include <cstdlib> //Used for when creating random numbers
 #include<cmath> //Include when doing math stuff
-#include <cfloat> //Used when using scientific numbers and decimal numbers
+#include <cfloat> /*Used when using scientific numbers and decimal numbers,
+					used to find the max and min of double and floating numbers*/
 #include <climits> //Used to find the max and min of integers
-#include <cfloat> //Used to find the max and min of double and floating numbers
+#include <iomanip> //To use Arguments
 
 using namespace std; //So we never have to put it in for the rest of the file
 namespace MyCode {
 	//To create own namespace
 }
-
 
 //Makes the entire line a comment
 
@@ -29,7 +29,7 @@ int main() { // The main function is where the program starts running
 	short int;
 	long int;
 	char c = 'C';
-	bool r = true;
+	bool r = true; //Non-0 values return true
 
 	//Floating Point Types:
 	float x = 15; //Declaration with assignment
@@ -38,6 +38,11 @@ int main() { // The main function is where the program starts running
 	double; //Used for scientific notation and decimals, use double as much as possible
 	long double;
 
+	//Converting from Integral to Floating, results in no loss of information, however reverse is not true:
+	//Converting from larger to smaller store will result in undefined behaviour
+	int i;
+	int j;
+	float f = float(i) / j; //Must make i a float
 
 	//Mathematical Operators:
 	int a = b + c; //Addition
@@ -46,8 +51,8 @@ int main() { // The main function is where the program starts running
 	float a = b / c: //Division, float in case of decimals when dividing
 	int a = b % c; //Modulo, returns remainder when b/c
 
-	i++; // assign i, increment it
-	++i; //increment i, then assign
+	i++; // Assign i, increment it
+	++i; //Increment i, then assign
 	i--;
 	--i;
 
@@ -70,6 +75,22 @@ int main() { // The main function is where the program starts running
 
 	cout << sizeof () << endl; //Gives size of memory taken by function
 
+	//Input and Output:
+		//General, the precision defines the total number of digits:
+		cout.setf(0,std::ios::floatfield);
+		cout.precision(6); //Number of sig figs
+		cout << 1234.5678 << endl; //Will only print first 6 sig figs and round the end, 1234.57
+		//Scientific, exponent notation, number of digits after the decimal point specified by the precision:
+		cout.setf(std::ios::scientific,std::ios::floatfield);
+		cout.precision(4); //Number of figs after decimal
+		cout << 1234.5678 << endl; //Will print 1.2346e+03, rounds the end
+		//Fixed, integer part followed by number of decimal places
+		cout.setf(std::ios::fixed,std::ios::floatfield);
+		cout.precision(3); //Number of places after decimal
+		cout << 1234.5678 << endl; //Will print 1234.568, rounds the end
+		//For change of base:
+		cout.setf(std::ios::dec,std::ios::basefield); //Where dec can be replaced with oct or hex
+	//These are all permanent until altered
 
 	//While Loop:
 	int i = 0; //Must declare variables outside while function
@@ -151,6 +172,43 @@ int main() { // The main function is where the program starts running
 	double y = abs(x); //Absolute value of x
 	double y = ciel(x); //Smallest integer not less than x
 	double y = floor(x); //Smallest integer not greater than x
+
+	//Formatting the field:
+	cout << /* Field1 */ << /* Field2 */ << /* Field3 */ << endl;
+	//For each field we can specify 3 properties:
+	cout.width(x); //Width, only applies to next << operation
+	cout.fill('*'); //Fill Character
+	cout.setf(std::ios::left,std::ios::adjustfield); //Adjustment, values can be left, right, internal
+	cout << /* Width */ -12 << 12 << endl; //Ouput is -12*12 on left hand side of field
+
+	//Manipulators:
+	cout << std::oct << 1234 << endl; //Prints in oct format, same can be done for hex and dec
+	cout << std::setprecision(4) << std::scientific << 1234.5678 << endl; //Prints using scientific system, same for general and fixed
+	cout << setw(4) << setfill('*') << std::left << 12 << endl;
+
+	//Input:
+	int x;
+	cin >> x; //Arrow direction important
+	//Can be tested with following functions:
+	cin.good(); //Will return true if everything is OK
+	cin.eof(); //Will return true if we've seen the end of the input
+	cin.fail(); //Will return true if the next operation will fail
+	cin.bad(); //Will return true if something is really wrong and the stream might be corrupted
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
