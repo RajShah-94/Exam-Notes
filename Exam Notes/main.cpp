@@ -39,7 +39,7 @@ int main() { // The main function is where the program starts running
 	int; //Used to declare integer
 	short int;
 	long int;
-	char c = 'C'; //Number of character
+	char c = 'C'; //One character
 	bool r = true; //Non-0 values return true
 
 	//Floating Point Types:
